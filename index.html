@@ -607,8 +607,186 @@ footer p { color: var(--gray); font-size: 0.78rem; }
     <li><a href="#brands">Brands</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li><a href="#" class="nav-login-btn" id="navLoginBtn" onclick="openModal('login'); return false;">🔐 Login</a></li>
   </ul>
 </nav>
+
+<!-- ===== AUTH MODAL OVERLAY ===== -->
+<div id="authOverlay" style="display:none; position:fixed; inset:0; background:rgba(4,8,18,0.85); backdrop-filter:blur(8px); z-index:2000; align-items:center; justify-content:center;">
+  <div id="authModal" style="background:#0C1829; border:1px solid #1F3A5C; border-radius:10px; padding:2.5rem 2rem; width:100%; max-width:420px; position:relative; margin:1rem;">
+    <!-- Close -->
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#7A8FA6;font-size:1.4rem;cursor:pointer;line-height:1;">&#x2715;</button>
+
+    <!-- Orange top accent -->
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#E8621A,transparent);border-radius:10px 10px 0 0;"></div>
+
+    <!-- LOGIN FORM -->
+    <div id="formLogin">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#E8621A;letter-spacing:0.1em;margin-bottom:1rem;opacity:0.8;">> AUTH / LOGIN</div>
+      <h2 style="font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:6px;color:#EEF2F8;">Welcome Back</h2>
+      <p style="color:#7A8FA6;font-size:0.85rem;margin-bottom:1.5rem;">Apna account login karein</p>
+      <div id="loginErr" style="display:none;background:rgba(232,98,26,0.1);border:1px solid rgba(232,98,26,0.3);color:#E8621A;padding:10px 14px;border-radius:4px;font-size:0.83rem;margin-bottom:1rem;"></div>
+      <div style="margin-bottom:1rem;">
+        <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">EMAIL</label>
+        <input type="email" id="liEmail" placeholder="aapka@email.com" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.9rem;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">PASSWORD</label>
+        <input type="password" id="liPass" placeholder="••••••••" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.9rem;outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+      </div>
+      <button onclick="doLogin()" style="width:100%;padding:12px;background:#E8621A;color:#080F1C;border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:background .2s;" onmouseover="this.style.background='#F07B35'" onmouseout="this.style.background='#E8621A'">LOGIN KAREIN</button>
+      <p style="text-align:center;margin-top:1.25rem;font-size:0.85rem;color:#7A8FA6;">Naya account? <a onclick="switchForm('register')" style="color:#E8621A;cursor:pointer;font-weight:600;">Register karein</a></p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="formRegister" style="display:none;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#E8621A;letter-spacing:0.1em;margin-bottom:1rem;opacity:0.8;">> AUTH / REGISTER</div>
+      <h2 style="font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:6px;color:#EEF2F8;">Naya Account</h2>
+      <p style="color:#7A8FA6;font-size:0.85rem;margin-bottom:1.5rem;">Free mein register karein</p>
+      <div id="regErr" style="display:none;background:rgba(232,98,26,0.1);border:1px solid rgba(232,98,26,0.3);color:#E8621A;padding:10px 14px;border-radius:4px;font-size:0.83rem;margin-bottom:1rem;"></div>
+      <div id="regOk" style="display:none;background:rgba(34,100,34,0.15);border:1px solid rgba(34,180,34,0.3);color:#4ade80;padding:10px 14px;border-radius:4px;font-size:0.83rem;margin-bottom:1rem;"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+        <div>
+          <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">NAAM</label>
+          <input type="text" id="rgName" placeholder="Ramesh Kumar" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.88rem;outline:none;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">PHONE</label>
+          <input type="tel" id="rgPhone" placeholder="98765 43210" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.88rem;outline:none;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">EMAIL</label>
+        <input type="email" id="rgEmail" placeholder="aapka@email.com" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.9rem;outline:none;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;">
+        <div>
+          <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">PASSWORD</label>
+          <input type="password" id="rgPass" placeholder="••••••••" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.88rem;outline:none;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+        </div>
+        <div>
+          <label style="display:block;font-size:0.78rem;color:#7A8FA6;margin-bottom:6px;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;">CONFIRM</label>
+          <input type="password" id="rgPass2" placeholder="••••••••" style="width:100%;padding:11px 14px;background:#080F1C;border:1px solid #1F3A5C;border-radius:4px;color:#EEF2F8;font-size:0.88rem;outline:none;" onfocus="this.style.borderColor='#E8621A'" onblur="this.style.borderColor='#1F3A5C'">
+        </div>
+      </div>
+      <button onclick="doRegister()" style="width:100%;padding:12px;background:#E8621A;color:#080F1C;border:none;border-radius:4px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;transition:background .2s;" onmouseover="this.style.background='#F07B35'" onmouseout="this.style.background='#E8621A'">ACCOUNT BANAYEIN</button>
+      <p style="text-align:center;margin-top:1.25rem;font-size:0.85rem;color:#7A8FA6;">Pehle se account hai? <a onclick="switchForm('login')" style="color:#E8621A;cursor:pointer;font-weight:600;">Login karein</a></p>
+    </div>
+
+    <!-- PROFILE VIEW -->
+    <div id="formProfile" style="display:none;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#E8621A;letter-spacing:0.1em;margin-bottom:1.25rem;opacity:0.8;">> MY ACCOUNT / PROFILE</div>
+      <div style="text-align:center;margin-bottom:1.25rem;">
+        <div id="profAvatar" style="width:68px;height:68px;border-radius:50%;background:rgba(232,98,26,0.15);border:2px solid rgba(232,98,26,0.4);display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;color:#E8621A;margin:0 auto 12px;">RK</div>
+        <div id="profName" style="font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:#EEF2F8;"></div>
+        <div id="profEmailDisp" style="font-size:0.82rem;color:#7A8FA6;margin-top:2px;"></div>
+      </div>
+      <div style="background:#080F1C;border:1px solid #162840;border-radius:6px;padding:1rem;">
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #162840;font-size:0.85rem;">
+          <span style="color:#7A8FA6;min-width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;">NAAM</span>
+          <span id="piName" style="color:#EEF2F8;font-weight:500;"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #162840;font-size:0.85rem;">
+          <span style="color:#7A8FA6;min-width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;">EMAIL</span>
+          <span id="piEmail" style="color:#EEF2F8;font-weight:500;"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #162840;font-size:0.85rem;">
+          <span style="color:#7A8FA6;min-width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;">PHONE</span>
+          <span id="piPhone" style="color:#EEF2F8;font-weight:500;"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:0.85rem;">
+          <span style="color:#7A8FA6;min-width:80px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;">STATUS</span>
+          <span style="background:rgba(34,180,34,0.12);border:1px solid rgba(34,180,34,0.3);color:#4ade80;padding:2px 10px;border-radius:3px;font-size:0.72rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;">ACTIVE ✓</span>
+        </div>
+      </div>
+      <button onclick="doLogout()" style="width:100%;padding:11px;margin-top:1.25rem;background:transparent;border:1px solid #1F3A5C;border-radius:4px;color:#E8621A;font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;letter-spacing:0.05em;transition:all .2s;" onmouseover="this.style.background='rgba(232,98,26,0.08)'" onmouseout="this.style.background='transparent'">🔓 LOGOUT KAREIN</button>
+    </div>
+  </div>
+</div>
+
+<style>
+.nav-login-btn {
+  background: transparent !important;
+  border: 1px solid rgba(232,98,26,0.5) !important;
+  color: #E8621A !important;
+  padding: 7px 16px; border-radius: 4px;
+  font-weight: 600 !important; font-size: 0.82rem !important;
+  letter-spacing: 0.05em; transition: all .2s !important;
+}
+.nav-login-btn::after { display: none !important; }
+.nav-login-btn:hover { background: rgba(232,98,26,0.1) !important; border-color: #E8621A !important; }
+#authOverlay.open { display: flex !important; }
+</style>
+
+<script>
+const _users = [{ name: 'Demo User', email: 'demo@test.com', phone: '99999 00000', password: 'demo123' }];
+let _me = null;
+
+function openModal(form) {
+  document.getElementById('authOverlay').classList.add('open');
+  switchForm(_me ? 'profile' : (form || 'login'));
+}
+function closeModal() {
+  document.getElementById('authOverlay').classList.remove('open');
+}
+document.getElementById('authOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+function switchForm(f) {
+  ['formLogin','formRegister','formProfile'].forEach(id => document.getElementById(id).style.display='none');
+  document.getElementById('form' + f.charAt(0).toUpperCase() + f.slice(1)).style.display = 'block';
+}
+function doLogin() {
+  const email = document.getElementById('liEmail').value.trim();
+  const pass  = document.getElementById('liPass').value;
+  const err   = document.getElementById('loginErr');
+  err.style.display = 'none';
+  if (!email || !pass) { err.textContent = 'Email aur password dono bharein.'; err.style.display='block'; return; }
+  const u = _users.find(x => x.email===email && x.password===pass);
+  if (!u) { err.textContent = 'Email ya password galat hai.'; err.style.display='block'; return; }
+  _me = u;
+  loadProfile();
+  switchForm('profile');
+  document.getElementById('navLoginBtn').textContent = '👤 ' + u.name.split(' ')[0];
+}
+function doRegister() {
+  const name  = document.getElementById('rgName').value.trim();
+  const email = document.getElementById('rgEmail').value.trim();
+  const phone = document.getElementById('rgPhone').value.trim();
+  const pass  = document.getElementById('rgPass').value;
+  const pass2 = document.getElementById('rgPass2').value;
+  const err   = document.getElementById('regErr');
+  const ok    = document.getElementById('regOk');
+  err.style.display='none'; ok.style.display='none';
+  if (!name||!email||!pass) { err.textContent='Sabhi fields bharna zaroori hai.'; err.style.display='block'; return; }
+  if (pass!==pass2) { err.textContent='Dono password same hone chahiye.'; err.style.display='block'; return; }
+  if (pass.length<6) { err.textContent='Password kam se kam 6 characters ka hona chahiye.'; err.style.display='block'; return; }
+  if (_users.find(x=>x.email===email)) { err.textContent='Yeh email pehle se registered hai.'; err.style.display='block'; return; }
+  _users.push({name, email, phone, password: pass});
+  ok.textContent = '✓ Account ban gaya! Ab login karein.'; ok.style.display='block';
+  document.getElementById('rgName').value='';
+  document.getElementById('rgPass').value='';
+  document.getElementById('rgPass2').value='';
+  document.getElementById('rgPhone').value='';
+  const savedEmail = email;
+  setTimeout(() => { document.getElementById('liEmail').value=savedEmail; switchForm('login'); }, 1600);
+}
+function doLogout() {
+  _me = null;
+  document.getElementById('navLoginBtn').textContent = '🔐 Login';
+  closeModal();
+}
+function loadProfile() {
+  if (!_me) return;
+  const initials = _me.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('profAvatar').textContent = initials;
+  document.getElementById('profName').textContent = _me.name;
+  document.getElementById('profEmailDisp').textContent = _me.email;
+  document.getElementById('piName').textContent = _me.name;
+  document.getElementById('piEmail').textContent = _me.email;
+  document.getElementById('piPhone').textContent = _me.phone || 'Not added';
+}
+</script>
 
 <!-- HERO -->
 <section class="hero">
