@@ -78,7 +78,7 @@ nav::after {
 }
 .logo-text span { color: var(--orange); display: block; font-size: 0.7rem; letter-spacing: 0.12em; font-weight: 500; }
 
-nav ul { list-style: none; display: flex; gap: 32px; }
+nav ul { list-style: none; display: flex; gap: clamp(12px, 1.7vw, 28px); align-items: center; }
 nav a {
   color: var(--gray); text-decoration: none;
   font-size: 0.85rem; font-weight: 500;
@@ -553,6 +553,129 @@ textarea { resize: vertical; min-height: 100px; }
   color: #4ade80; font-weight: 600; font-family: var(--mono); font-size: 0.85rem;
 }
 
+/* BOOKING */
+#booking { background: var(--navy); position: relative; }
+.booking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 28px; margin-top: 52px; align-items: start;
+}
+.price-board, .booking-form {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 8px; padding: 32px;
+}
+.price-board h3, .booking-form h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem; font-weight: 700; margin-bottom: 22px;
+}
+.booking-list { display: grid; gap: 12px; }
+.booking-item {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 16px; border: 1px solid var(--border);
+  background: rgba(8,15,28,0.45); border-radius: 6px;
+}
+.booking-item h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.02rem; font-weight: 700; margin-bottom: 4px;
+}
+.booking-item p { color: var(--gray); font-size: 0.8rem; line-height: 1.55; }
+.booking-rate {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--orange); font-weight: 700; font-size: 1.05rem;
+  white-space: nowrap; text-align: right;
+}
+.booking-note {
+  margin-top: 16px; padding: 14px 16px;
+  border: 1px solid rgba(232,98,26,0.25);
+  background: rgba(232,98,26,0.08); border-radius: 6px;
+  color: #C6D2E0; font-size: 0.82rem; line-height: 1.7;
+}
+.booking-add-panel, .booking-cart {
+  margin: 4px 0 16px; padding: 16px;
+  background: rgba(8,15,28,0.55); border: 1px solid var(--border2);
+  border-radius: 6px;
+}
+.booking-add-panel {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.current-service-estimate {
+  display: block; font-family: 'Rajdhani', sans-serif;
+  color: var(--orange); font-size: 1.45rem; line-height: 1.1;
+}
+.add-service-btn {
+  background: transparent; color: var(--orange);
+  border: 1px solid rgba(232,98,26,0.55);
+  padding: 12px 18px; border-radius: 4px;
+  font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif; letter-spacing: 0.06em;
+  text-transform: uppercase; transition: all .2s; white-space: nowrap;
+}
+.add-service-btn:hover { background: rgba(232,98,26,0.1); border-color: var(--orange); transform: translateY(-1px); }
+.booking-cart-head, .booking-added-row, .booking-summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.booking-cart-head { margin-bottom: 12px; }
+.booking-cart-head h4 {
+  font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700;
+}
+#bookingItemCount {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--gray);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+.booking-items-empty {
+  color: var(--gray); font-size: 0.82rem;
+  border: 1px dashed var(--border2); border-radius: 6px;
+  padding: 14px; text-align: center;
+}
+.booking-added-list { display: grid; gap: 10px; }
+.booking-added-row {
+  padding: 12px; border: 1px solid var(--border);
+  background: rgba(14,30,53,0.45); border-radius: 6px;
+}
+.booking-added-name {
+  display: block; color: var(--white); font-weight: 600; font-size: 0.88rem;
+}
+.booking-added-meta { color: var(--gray); font-size: 0.76rem; }
+.booking-added-price {
+  color: var(--orange); font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem; font-weight: 700; white-space: nowrap;
+}
+.remove-service-btn {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border2);
+  color: var(--gray); border-radius: 4px; cursor: pointer;
+  width: 34px; height: 34px; flex-shrink: 0; transition: all .2s;
+}
+.remove-service-btn:hover { color: var(--orange); border-color: rgba(232,98,26,0.55); }
+.booking-summary {
+  margin: 4px 0 16px; padding: 16px;
+  background: rgba(8,15,28,0.55); border: 1px solid var(--border2);
+  border-radius: 6px;
+}
+.estimate-label {
+  display: block; font-family: var(--mono); font-size: 0.68rem;
+  color: var(--gray); letter-spacing: 0.06em; text-transform: uppercase;
+}
+#bookingEstimate {
+  display: block; font-family: 'Rajdhani', sans-serif;
+  color: var(--orange); font-size: 1.8rem; line-height: 1.1;
+}
+.estimate-note { color: var(--gray); font-size: 0.78rem; text-align: right; max-width: 260px; }
+.booking-success {
+  display: none; margin-top: 14px; padding: 14px;
+  color: #4ade80; border: 1px solid rgba(74,222,128,0.2);
+  background: rgba(74,222,128,0.08); border-radius: 6px;
+  font-family: var(--mono); font-size: 0.78rem; text-align: center;
+}
+
+@media (max-width: 900px) {
+  .booking-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .booking-item, .booking-add-panel, .booking-added-row, .booking-summary { flex-direction: column; align-items: flex-start; }
+  .booking-rate, .estimate-note { text-align: left; }
+  .add-service-btn { width: 100%; }
+}
 /* FOOTER */
 footer {
   background: #050C18;
@@ -606,7 +729,8 @@ footer p { color: var(--gray); font-size: 0.78rem; }
     <li><a href="#products">Products</a></li>
     <li><a href="#brands">Brands</a></li>
     <li><a href="#why">Why Us</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#booking" class="nav-cta">Book Service</a></li>
     <li><a href="#" class="nav-login-btn" id="navLoginBtn" onclick="openModal('login'); return false;">🔐 Login</a></li>
   </ul>
 </nav>
@@ -801,7 +925,7 @@ function loadProfile() {
       <p class="hero-tagline">// Securing Today. Protecting Tomorrow.</p>
       <p>Professional CCTV supply, installation &amp; complete networking solutions for homes, shops, offices and industries. One team — from equipment to setup.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#booking" class="btn-primary">Book a Service</a>
         <a href="#services" class="btn-outline">View Services &rarr;</a>
       </div>
       <div class="hero-stats">
@@ -1092,6 +1216,174 @@ function loadProfile() {
 </section>
 
 <!-- CONTACT -->
+<section id="booking">
+  <div class="section-eyebrow">Book Service</div>
+  <h2 class="section-title">Service Booking &amp; Visit Charges</h2>
+  <p class="section-sub">Customer ek se zyada services add karke ek hi booking request bhej sakte hain. Estimated charge sirf service/labour ke liye hai.</p>
+
+  <div class="booking-layout">
+    <div class="price-board">
+      <h3>Service Charges</h3>
+      <div class="booking-list">
+        <div class="booking-item">
+          <div>
+            <h4>General Inspection</h4>
+            <p>Site visit aur basic issue checking.</p>
+          </div>
+          <div class="booking-rate">₹400 / visit</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>CCTV Installation</h4>
+            <p>Normal/non-IP camera, WiFi camera, IP camera aur solar camera installation.</p>
+          </div>
+          <div class="booking-rate">₹300 normal/WiFi<br>₹500 IP/solar</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>CCTV Repairing</h4>
+            <p>Normal camera aur IP camera repairing service.</p>
+          </div>
+          <div class="booking-rate">₹400 normal<br>₹500 IP</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>CCTV Monthly Maintenance</h4>
+            <p>Home CCTV maintenance, poore month ki service kifayti daam par.</p>
+          </div>
+          <div class="booking-rate">₹1500 / month<br>4-8 cameras<br>₹2000 / month<br>9-16 cameras</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>Intercom Installation / Service</h4>
+            <p>Normal scenario me intercom phone installation ya service.</p>
+          </div>
+          <div class="booking-rate">₹300 / phone</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>Intercom Repairing</h4>
+            <p>Intercom phone repairing and troubleshooting.</p>
+          </div>
+          <div class="booking-rate">₹400 / phone</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>LAN Wiring</h4>
+            <p>Structured cabling point-wise service.</p>
+          </div>
+          <div class="booking-rate">₹300 / point</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>Router Setup</h4>
+            <p>Router installation and configuration.</p>
+          </div>
+          <div class="booking-rate">₹350</div>
+        </div>
+        <div class="booking-item">
+          <div>
+            <h4>AP Device Setup</h4>
+            <p>Access point installation and configuration.</p>
+          </div>
+          <div class="booking-rate">₹1000 / point</div>
+        </div>
+      </div>
+      <div class="booking-note"><strong>Important:</strong> Samaan/material, cable, connector, camera part, intercom part, router, AP device ya kisi bhi hardware ka price alag hoga. Upar diye gaye charges sirf service charges hain.</div>
+    </div>
+
+    <form class="booking-form" id="bookingForm">
+      <h3>Service Book करें</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>आपका नाम *</label>
+          <input type="text" id="bookName" placeholder="Aryan Kumar" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="bookPhone" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Service *</label>
+          <select id="bookingService">
+            <option value="" data-rate="0" data-unit="unit">-- Select करें --</option>
+            <option value="General Inspection" data-rate="400" data-unit="visit">General Inspection - ₹400 / visit</option>
+            <option value="CCTV Installation - Normal Camera" data-rate="300" data-unit="camera">CCTV Installation Normal Camera - ₹300 / camera</option>
+            <option value="CCTV Installation - WiFi Camera" data-rate="300" data-unit="camera">CCTV Installation WiFi Camera - ₹300 / camera</option>
+            <option value="CCTV Installation - IP Camera" data-rate="500" data-unit="camera">CCTV Installation IP Camera - ₹500 / camera</option>
+            <option value="CCTV Installation - Solar Camera" data-rate="500" data-unit="camera">CCTV Installation Solar Camera - ₹500 / camera</option>
+            <option value="CCTV Repairing - Normal Camera" data-rate="400" data-unit="camera">CCTV Repairing Normal Camera - ₹400 / camera</option>
+            <option value="CCTV Repairing - IP Camera" data-rate="500" data-unit="camera">CCTV Repairing IP Camera - ₹500 / camera</option>
+            <option value="CCTV Monthly Maintenance - Home 4 to 8 Cameras" data-rate="1500" data-unit="month">CCTV Maintenance Home 4-8 Cameras - ₹1500 / month</option>
+            <option value="CCTV Monthly Maintenance - Home 9 to 16 Cameras" data-rate="2000" data-unit="month">CCTV Maintenance Home 9-16 Cameras - ₹2000 / month</option>
+            <option value="Intercom Installation / Service" data-rate="300" data-unit="phone">Intercom Installation / Service - ₹300 / phone</option>
+            <option value="Intercom Repairing" data-rate="400" data-unit="phone">Intercom Repairing - ₹400 / phone</option>
+            <option value="LAN Wiring" data-rate="300" data-unit="point">LAN Wiring - ₹300 / point</option>
+            <option value="Router Installation & Configuration" data-rate="350" data-unit="router">Router Installation / Configuration - ₹350</option>
+            <option value="AP Device Installation & Configuration" data-rate="1000" data-unit="point">AP Device Installation / Configuration - ₹1000 / point</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quantity / Cameras / Phones / Points / Months *</label>
+          <input type="number" id="bookingQty" min="1" value="1">
+        </div>
+      </div>
+
+      <div class="booking-add-panel">
+        <div>
+          <span class="estimate-label">Selected service estimate</span>
+          <strong class="current-service-estimate" id="currentServiceEstimate">Select service</strong>
+          <p class="estimate-note" id="bookingUnitNote">Service add karne ke liye service select karein.</p>
+        </div>
+        <button type="button" class="add-service-btn" id="addBookingService">Add Service +</button>
+      </div>
+
+      <div class="booking-cart">
+        <div class="booking-cart-head">
+          <h4>Added Services</h4>
+          <span id="bookingItemCount">0 added</span>
+        </div>
+        <div id="bookingItems" class="booking-items-empty">Abhi koi service add nahi hui.</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Preferred Date</label>
+          <input type="date" id="bookDate">
+        </div>
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <input type="time" id="bookTime">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Location / Address *</label>
+        <input type="text" id="bookAddress" placeholder="Mohalla, City, Landmark" required>
+      </div>
+
+      <div class="form-group">
+        <label>Extra Details</label>
+        <textarea id="bookMessage" placeholder="Problem kya hai? Camera/phone/point kitne hain? Koi aur detail..."></textarea>
+      </div>
+
+      <div class="booking-summary">
+        <div>
+          <span class="estimate-label">Total estimated service charge</span>
+          <strong id="bookingEstimate">₹0</strong>
+        </div>
+        <p class="estimate-note" id="bookingTotalNote">Ek ya zyada services add karke booking karein. Material/samaan alag hoga.</p>
+      </div>
+
+      <button type="submit" class="submit-btn">Book Selected Services on WhatsApp →</button>
+      <div class="booking-success" id="bookingSuccess">WhatsApp par booking message ready hai. Send dabakar request confirm kar dein.</div>
+    </form>
+  </div>
+</section>
 <section id="contact">
   <div class="section-eyebrow">Contact / संपर्क करें</div>
   <h2 class="section-title">Enquiry करें — Free है!</h2>
@@ -1214,6 +1506,158 @@ function loadProfile() {
   }
 </script>
 
+<script>
+(function(){
+  const bookingForm = document.getElementById('bookingForm');
+  if (!bookingForm) return;
+
+  const service = document.getElementById('bookingService');
+  const qty = document.getElementById('bookingQty');
+  const addBtn = document.getElementById('addBookingService');
+  const currentEstimate = document.getElementById('currentServiceEstimate');
+  const estimate = document.getElementById('bookingEstimate');
+  const note = document.getElementById('bookingUnitNote');
+  const totalNote = document.getElementById('bookingTotalNote');
+  const itemsBox = document.getElementById('bookingItems');
+  const itemCount = document.getElementById('bookingItemCount');
+  const success = document.getElementById('bookingSuccess');
+  const whatsappNumber = '917070993983';
+  const bookingItems = [];
+
+  function formatINR(value) {
+    return '₹' + Number(value).toLocaleString('en-IN');
+  }
+
+  function unitText(unit, quantity) {
+    if (quantity === 1) return unit;
+    if (unit === 'month') return 'months';
+    return unit + 's';
+  }
+
+  function currentBooking() {
+    const selected = service.options[service.selectedIndex];
+    const rate = Number(selected.dataset.rate || 0);
+    const unit = selected.dataset.unit || 'unit';
+    const quantity = Math.max(1, Number(qty.value) || 1);
+    const total = rate * quantity;
+    return {
+      name: selected.value,
+      label: selected.textContent.trim(),
+      rate,
+      unit,
+      quantity,
+      total
+    };
+  }
+
+  function updateCurrentEstimate() {
+    const booking = currentBooking();
+    if (!booking.rate) {
+      currentEstimate.textContent = 'Select service';
+      note.textContent = 'Service add karne ke liye service select karein.';
+      return;
+    }
+    currentEstimate.textContent = formatINR(booking.total);
+    note.textContent = `${booking.quantity} ${unitText(booking.unit, booking.quantity)} x ${formatINR(booking.rate)}. Add Service dabakar list me jodein.`;
+  }
+
+  function renderBookingItems() {
+    const total = bookingItems.reduce((sum, item) => sum + item.total, 0);
+    estimate.textContent = formatINR(total);
+    itemCount.textContent = `${bookingItems.length} added`;
+    totalNote.textContent = bookingItems.length
+      ? 'Final booking WhatsApp par in sab selected services ke saath jayegi. Material/samaan alag hoga.'
+      : 'Ek ya zyada services add karke booking karein. Material/samaan alag hoga.';
+
+    if (!bookingItems.length) {
+      itemsBox.className = 'booking-items-empty';
+      itemsBox.innerHTML = 'Abhi koi service add nahi hui.';
+      return;
+    }
+
+    itemsBox.className = 'booking-added-list';
+    itemsBox.innerHTML = bookingItems.map((item, index) => `
+      <div class="booking-added-row">
+        <div>
+          <span class="booking-added-name">${item.name}</span>
+          <span class="booking-added-meta">${item.quantity} ${unitText(item.unit, item.quantity)} x ${formatINR(item.rate)}</span>
+        </div>
+        <div class="booking-added-price">${formatINR(item.total)}</div>
+        <button type="button" class="remove-service-btn" data-index="${index}" aria-label="Remove service">×</button>
+      </div>
+    `).join('');
+  }
+
+  service.addEventListener('change', updateCurrentEstimate);
+  qty.addEventListener('input', updateCurrentEstimate);
+
+  addBtn.addEventListener('click', function() {
+    const booking = currentBooking();
+    if (!booking.rate) {
+      alert('Pehle service select karein.');
+      return;
+    }
+    bookingItems.push(booking);
+    service.value = '';
+    qty.value = '1';
+    success.style.display = 'none';
+    updateCurrentEstimate();
+    renderBookingItems();
+  });
+
+  itemsBox.addEventListener('click', function(e) {
+    const btn = e.target.closest('.remove-service-btn');
+    if (!btn) return;
+    bookingItems.splice(Number(btn.dataset.index), 1);
+    success.style.display = 'none';
+    renderBookingItems();
+  });
+
+  updateCurrentEstimate();
+  renderBookingItems();
+
+  bookingForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('bookName').value.trim();
+    const phone = document.getElementById('bookPhone').value.trim();
+    const address = document.getElementById('bookAddress').value.trim();
+    const date = document.getElementById('bookDate').value || 'Flexible';
+    const time = document.getElementById('bookTime').value || 'Flexible';
+    const details = document.getElementById('bookMessage').value.trim() || 'No extra details';
+    const total = bookingItems.reduce((sum, item) => sum + item.total, 0);
+
+    if (!name || !phone || !address) {
+      alert('Name, phone aur address bharna zaroori hai.');
+      return;
+    }
+    if (!bookingItems.length) {
+      alert('Booking se pehle kam se kam ek service add karein.');
+      return;
+    }
+
+    const selectedServices = bookingItems.map((item, index) =>
+      `${index + 1}. ${item.name} - ${item.quantity} ${unitText(item.unit, item.quantity)} x ${formatINR(item.rate)} = ${formatINR(item.total)}`
+    ).join('\n');
+
+    const message = [
+      'New Service Booking Request',
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      'Selected Services:',
+      selectedServices,
+      `Total Estimated Service Charge: ${formatINR(total)}`,
+      'Note: Material/samaan ka price alag hoga.',
+      `Preferred Date: ${date}`,
+      `Preferred Time: ${time}`,
+      `Address: ${address}`,
+      `Details: ${details}`
+    ].join('\n');
+
+    success.style.display = 'block';
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+  });
+})();
+</script>
 <canvas id="trailCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;"></canvas>
 <script>
 (function(){
